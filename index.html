@@ -26,32 +26,46 @@
   <button class="tablinks" onclick="openCity(event, 'distSort')">Proximity</button>   
 </div>
 
-<div id="magSort" class="tabcontent">
+<div id="magSort" class="tabcontent" style="display:block">
   <h3>Sort By Magnituide</h3>
-  <p>Magnituide in Reichter Scale.</p>
+  <p>Magnituide displayed in the Richter Scale</p>
+  <p>Checking "Descending" sorts quakes from greatest to least by magnitude</p>
+  <p>Checking "Ascending" sorts quakes from least to greatest by magnitude</p>
 </div>
 
-<div id="timeSort" class="tabcontent">
+<div id="timeSort" class="tabcontent" style="display:none">
   <h3>Sort By Time</h3>
-  <p>Time displayed based on locality.</p> 
+  <p>Time displayed based on locality.</p>
+  <p>Checking "Descending" sorts quakes from most to least recent</p>
+  <p>Checking "Ascending" sorts quakes from least to most recent</p>
 </div>
 
-<div id="longSort" class="tabcontent">
+<div id="longSort" class="tabcontent" style="display:none">
   <h3>Sort By Longitude</h3>
   <p>Longitude in degrees.</p>
+  <p>Checking "Descending" sorts quakes from greatest to least by longitude</p>
+  <p>Checking "Ascending" sorts quakes from least to greatest by longitude</p>
 </div>    
     
-<div id="latSort" class="tabcontent">
+<div id="latSort" class="tabcontent" style="display:none">
   <h3>Sort By Latitude</h3>
-  <p>Latitude in degrees.</p>    
+  <p>Latitude in degrees.</p>
+  <p>Checking "Descending" sorts quakes from greatest to least by latitude</p>
+  <p>Checking "Ascending" sorts quakes from least to greatest by latitude</p>
 </div>
 
-<div id="distSort" class="tabcontent">
+<div id="distSort" class="tabcontent" style="display:none">
   <h3>Sort By Proximity</h3>
   <p>Enter your location: </p>
-  <input type="text" id="city"> 
+  <p>Checking "Descending" sorts quakes from furthest to closest</p>
+  <p>Checking "Ascending" sorts quakes from closest to furthest</p>
+  <p>Distance is displayed in km</p>
+  <input type="text" id="city" value="San Jose"> 
 </div>    
    
+<script type="text/javascript">
+document.getElementById('magSort').value = "on"
+</script>    
     
     <!-- show filters 
     <div>
