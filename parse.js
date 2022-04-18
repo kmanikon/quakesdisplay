@@ -64,7 +64,7 @@ function display(){
     }
         
     if (distSort){
-        quakeInfo.innerHTML += "Your location: [" + mylong + ", " + mylat + "]<br><br>"
+        quakeInfo.innerHTML += "Your Location: [" + mylat.toFixed(2) + ", " + mylong.toFixed(2) + "]<br><br>"
     }
     var quakeList = []
         
@@ -77,7 +77,7 @@ function display(){
                 'timenum': data["features"][i]["properties"]["time"],
                 'long': (data["features"][i]["geometry"]["coordinates"][0]).toFixed(2),
                 'lat': (data["features"][i]["geometry"]["coordinates"][1]).toFixed(2),
-                'dist': (getDist(mylong, data["features"][i]["geometry"]["coordinates"][0], mylat, data["features"][i]["geometry"]["coordinates"][1])).toFixed(2)
+                'dist': (getDist(mylat, data["features"][i]["geometry"]["coordinates"][1], mylong, data["features"][i]["geometry"]["coordinates"][0])).toFixed(2)
             }
                 
             quakeList.push(quake)
@@ -141,7 +141,7 @@ function display(){
         }
         
         if (distSort){
-             head += `<th>Distance</th>`  
+             head += `<th>Distance (km)</th>`  
         }
         
         head += `</tr>`
@@ -165,7 +165,7 @@ function display(){
             }
             if (coorChecked == true){
                 //body += `<td>${"[" + quakeList[i]['long'] + ", " + quakeList[i]['lat'] + "]"}</td>`
-                body += `<td>${quakeList[i]['long'] + ", " + quakeList[i]['lat']}</td>`
+                body += `<td>${quakeList[i]['lat'] + ", " + quakeList[i]['long']}</td>`
             }
             if (distSort){
                 body += `<td>${quakeList[i]['dist']}</td>`
@@ -199,9 +199,21 @@ function display(){
           
 }
 
+// x = lat, y = long
 
 function getDist(x1,x2, y1, y2){
-    return Math.sqrt(Math.abs(x2 - x1) * Math.abs(x2 - x1) + Math.abs(y2 - y1) * Math.abs(y2 - y1));
+
+    var R = 6371;
+    var l1 = x1 * Math.PI/180;
+    var l2 = x2 * Math.PI/180;
+    var dl = (x2 - x1) * Math.PI/180;
+    var dr = (y2 - y1) * Math.PI/180;
+    
+    var a = Math.sin(dl/2) * Math.sin(dl/2) + Math.cos(l1) * Math.cos(l2) * Math.sin(dr/2) * Math.sin(dr/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    
+    return R * c;
+    
 }
     
 function gotdata(data){
