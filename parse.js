@@ -30,7 +30,7 @@ function display(){
     
     var staticURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
     var mapsURLBase = "https://maps.googleapis.com/maps/api/geocode/json?address="
-    var mapsAPIKey = "AIzaSyBeZMNx3ktxyP22pR5o7uI_p1UbbSosidE"//"&key=AIzaSyBsC1WKjKATvdB_5YinmZFnGAJd5x7LiPg"
+    var mapsAPIKey = "&key=AIzaSyBeZMNx3ktxyP22pR5o7uI_p1UbbSosidE"//"&key=AIzaSyBsC1WKjKATvdB_5YinmZFnGAJd5x7LiPg"
     var quakeInfo = document.getElementById("data")     
     
     var magChecked = document.getElementById("Magnitude").checked
