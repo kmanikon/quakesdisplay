@@ -99,3 +99,10 @@ body {font-family: Arial;}
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+
+
+#map {
+  height: 800px;
+  width: 100%;
+}

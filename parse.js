@@ -1,6 +1,31 @@
 var mylong
 var mylat
 
+/*
+function initMap() {
+  // [START maps_add_map_instantiate_map]
+  // The location of Uluru
+  const uluru = { lat: 37.34, lng: -121.89 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: uluru,
+  });
+  // [END maps_add_map_instantiate_map]
+  // [START maps_add_map_instantiate_marker]
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+  });
+  // [END maps_add_map_instantiate_marker]
+}
+
+
+window.initMap = initMap;
+*/
+
+
 function display(){    
     
     var staticURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
@@ -26,10 +51,14 @@ function display(){
     var ascSort = document.getElementById("ascending").checked
     var decSort = document.getElementById("descending").checked
         
-    var n = document.getElementById("number").value
+    var mapChecked = document.getElementById("mapview").checked
+    var tblChecked = document.getElementById("tableview").checked
     
-    // how many to show also
-        
+    //var n = (document.getElementById("numbero").value)
+    var n = parseInt( $( '#numbero' ).val() )
+    var nf = 100    
+    
+    
     city.replace(" ", "+")
     
     var asc = -1
@@ -38,7 +67,10 @@ function display(){
     } 
         
     document.getElementById("data").innerHTML = ""
-        
+    
+    
+    
+    
     if (city == false && distSort == true){
         quakeInfo.innerHTML += "Please Enter a City Name"
         return
@@ -63,13 +95,24 @@ function display(){
         }
     }
         
+    //if (distSort){
+    //    quakeInfo.innerHTML += "Your Location: [" + mylat.toFixed(2) + ", " + mylong.toFixed(2) + "]<br><br>"
+    //}
+    
+    /*
     if (distSort){
-        quakeInfo.innerHTML += "Your Location: [" + mylat.toFixed(2) + ", " + mylong.toFixed(2) + "]<br><br>"
+        quakeInfo.innerHTML += n//"Your Location: [" + mylat.toFixed(2) + ", " + mylong.toFixed(2) + "]<br><br>"
     }
+    */
     var quakeList = []
+    var markers = []
         
+    //n = 5
+    //nfind = 100
+    
+    
     $.getJSON(staticURL, function(data) {
-        for (i = 0; i < n; i++){ // data.length for whole
+        for (i = 0; i < nf; i++){ // data.length for whole
             var quake = {
                 'mag': (data["features"][i]["properties"]["mag"]).toFixed(2), 
                 'place': (data["features"][i]["properties"]["place"]),
@@ -119,84 +162,117 @@ function display(){
         thead.innerHTML = ""
         tbody.innerHTML = ""
         
+        
         var head = ""
         var body = ""
         
-        head += `<tr>`
+        //n = parseInt(document.getElementById("numbero"))
+        //quakeInfo.innerHTML += n//document.getElementById("number").value   
+        if (mapChecked){
         
-        if (magChecked == true){
-            head += `<th>Magnitude</th>`
+            document.getElementById("map").style.visibility = "visible";
+            const uluru = { lat: mylat, lng: mylong };
+    
+        
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 2,
+                center: uluru,
+            });
+                
+            markers[0] = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+            
+            var infowindow = new google.maps.InfoWindow({
+                content: 'YOU'
+            });
+            
+            infowindow.open(map, markers[0]);
+                google.maps.event.addListener(markers[0], 'click', function () {
+                alert(markers[this.id].description)
+            });
+        
+            
+            for (i = 1; i < (n + 1); i++){
+                var pos = new google.maps.LatLng(quakeList[i-1]['lat'], quakeList[i-1]['long'])
+            
+                markers[i] = new google.maps.Marker({
+                    position: pos,
+                    map,
+                });
+            
+                var infowindow = new google.maps.InfoWindow({
+                    content: quakeList[(i - 1)]['place']
+                });
+            
+                infowindow.open(map, markers[i]);
+                    google.maps.event.addListener(markers[i], 'click', function () {
+                        alert(markers[this.id].description)
+                    })
+            }
+            
+            //map = map.setCenter(mylat, mylong, 2);
+            
         }
         
-        if (placeChecked == true){
-            head += `<th>Location</th>`
+        if (tblChecked){
+        
+            document.getElementById("map").style.visibility = "hidden";
+            head += `<tr>`
+        
+            if (magChecked == true){
+                head += `<th>Magnitude</th>`
+            }
+         
+            if (placeChecked == true){
+                head += `<th>Location</th>`
+            }
+            
+            if (timeChecked == true){
+                head += `<th>Time</th>`
+            }
+        
+            if (coorChecked == true){
+                head += `<th>Coordinates</th>`
+            }
+         
+            if (distSort){
+                head += `<th>Distance (km)</th>`  
+            }
+        
+            head += `</tr>`
+        
+            thead.innerHTML += head
+            
+            for (i = 0; i < n; i++){ // data.length for whole
+                body = ""
+                body += `<tr>`
+                if (magChecked == true){
+                    body += `<td>${quakeList[i]['mag']}</td>`
+                }
+                if (placeChecked == true){
+                    body += `<td>${quakeList[i]['place']}</td>`
+                }
+                if (timeChecked == true){
+                    body += `<td>${quakeList[i]['time']}</td>`
+                }
+                if (coorChecked == true){
+                    //body += `<td>${"[" + quakeList[i]['long'] + ", " + quakeList[i]['lat'] + "]"}</td>`
+                    body += `<td>${quakeList[i]['lat'] + ", " + quakeList[i]['long']}</td>`
+                }
+                if (distSort){
+                    body += `<td>${quakeList[i]['dist']}</td>`
+                }
+                tbody.innerHTML += body
+            
+            }
         }
 
-        if (timeChecked == true){
-            head += `<th>Time</th>`
-        }
-        
-        if (coorChecked == true){
-            head += `<th>Coordinates</th>`
-        }
-        
-        if (distSort){
-             head += `<th>Distance (km)</th>`  
-        }
-        
-        head += `</tr>`
-        
-        thead.innerHTML += head
-        
-        
-        // this loop needs to be in getJSON
-    
-        for (i = 0; i < n; i++){ // data.length for whole
-            body = ""
-            body += `<tr>`
-            if (magChecked == true){
-                body += `<td>${quakeList[i]['mag']}</td>`
-            }
-            if (placeChecked == true){
-                body += `<td>${quakeList[i]['place']}</td>`
-            }
-            if (timeChecked == true){
-                body += `<td>${quakeList[i]['time']}</td>`
-            }
-            if (coorChecked == true){
-                //body += `<td>${"[" + quakeList[i]['long'] + ", " + quakeList[i]['lat'] + "]"}</td>`
-                body += `<td>${quakeList[i]['lat'] + ", " + quakeList[i]['long']}</td>`
-            }
-            if (distSort){
-                body += `<td>${quakeList[i]['dist']}</td>`
-            }
-            tbody.innerHTML += body
-        }
-        
-        /*
-        for (i = 0; i < n; i++){ // data.length for whole
-            str = ""
-            if (magChecked == true){
-                quakeInfo.innerHTML += ("(" + quakeList[i]['mag'] + ") ").padEnd(10, '.')                
-            }
-            if (placeChecked == true){
-               quakeInfo.innerHTML += (quakeList[i]['place'] + ", ").padEnd(40, '.')
-            }
-            if (timeChecked == true){
-                quakeInfo.innerHTML += quakeList[i]['time'] + ", "
-            }
-            if (coorChecked == true){
-                quakeInfo.innerHTML += "[" + quakeList[i]['long'] + ", " + quakeList[i]['lat'] + "]"
-            }
-            if (distSort){
-                quakeInfo.innerHTML += ", Dist: " + quakeList[i]['dist']
-            }
-            quakeInfo.innerHTML += "<br>"   
-        }
-        */
-            
     });
           
+    
+    
 }
 
 // x = lat, y = long
@@ -219,7 +295,6 @@ function getDist(x1,x2, y1, y2){
 function gotdata(data){
     mapsdata = data;
 }    
-
 
 
 function openCity(evt, cityName) {
