@@ -24,7 +24,8 @@
   <button class="tablinks" onclick="openCity(event, 'timeSort')">Time</button>
   <button class="tablinks" onclick="openCity(event, 'longSort')">Longitude</button>
   <button class="tablinks" onclick="openCity(event, 'latSort')">Latitude</button>
-  <button class="tablinks" onclick="openCity(event, 'distSort')">Proximity</button>   
+  <button class="tablinks" onclick="openCity(event, 'distSort')">Proximity</button>  
+  <button class="tablinks" onclick="openCity(event, 'about')">About</button>
 </div>
 
 <div id="magSort" class="tabcontent" style="display:none">
@@ -55,18 +56,26 @@
   <p>Checking "Ascending" sorts quakes from least to greatest by latitude</p>
 </div>
 
-<div id="distSort" class="tabcontent" style="display:block">
+<div id="distSort" class="tabcontent" style="display:none">
   <h3>Sort By Proximity</h3>
   <p>Enter your location: </p>
   <p>Checking "Descending" sorts quakes from furthest to closest</p>
   <p>Checking "Ascending" sorts quakes from closest to furthest</p>
   <p>Distance is displayed in km</p>
   <input type="text" id="city" value="San Jose"> 
-</div>    
+</div>  
+    
+<div id="about" class="tabcontent" style="display:block">
+  <p>This webpage is an online tool for displaying earthquake data collected by the US Geological survey.</p>
+  <p>Select a tab to sort by the associated attribute and use the checkboxes to filter your search.</p>
+  <p>Quakes can either be shown on a Google Map or presented in table format.</p>
+</div>        
    
+    
 <script type="text/javascript">
-document.getElementById('distSort').value = "on"
-</script>    
+document.getElementById('about').value = "on"
+</script> 
+
     
     
     <br>

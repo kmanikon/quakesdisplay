@@ -44,9 +44,9 @@ function display(){
     var longSort = (document.getElementById("longSort").value == "on")
     var latSort = (document.getElementById("latSort").value == "on")
     var distSort = (document.getElementById("distSort").value == "on")
+    var about = (document.getElementById("about").value == "on")
         
-    var city = document.getElementById("city").value//"1600+Amphitheatre+Parkway,+Mountain+View,+CA"  
-    //var city = "1600+Amphitheatre+Parkway,+Mountain+View,+CA"
+    var city = document.getElementById("city").value
     
     var ascSort = document.getElementById("ascending").checked
     var decSort = document.getElementById("descending").checked
@@ -54,9 +54,13 @@ function display(){
     var mapChecked = document.getElementById("mapview").checked
     var tblChecked = document.getElementById("tableview").checked
     
-    //var n = (document.getElementById("numbero").value)
     var n = parseInt( $( '#numbero' ).val() )
-    var nf = 100    
+    
+    var nf = 100
+    
+    if (n > 100){
+        nf = n;
+    }
     
     
     city.replace(" ", "+")
@@ -69,6 +73,10 @@ function display(){
     document.getElementById("data").innerHTML = ""
     
     
+    if (about == true){
+        quakeInfo.innerHTML += "Please Choose an Attribute to Sort By"
+        return
+    }
     
     
     if (city == false && distSort == true){
@@ -93,8 +101,13 @@ function display(){
             quakeInfo.innerHTML += "Place was not Valid"
             return
         }
+        
     }
         
+    if (document.getElementById("numbero").value == ""){
+            quakeInfo.innerHTML += "Please Enter the Number of Quakes to Fetch."
+            return
+    }
     //if (distSort){
     //    quakeInfo.innerHTML += "Your Location: [" + mylat.toFixed(2) + ", " + mylong.toFixed(2) + "]<br><br>"
     //}
@@ -104,6 +117,7 @@ function display(){
         quakeInfo.innerHTML += n//"Your Location: [" + mylat.toFixed(2) + ", " + mylong.toFixed(2) + "]<br><br>"
     }
     */
+    
     var quakeList = []
     var markers = []
         
@@ -303,7 +317,8 @@ function openCity(evt, cityName) {
   document.getElementById("timeSort").value = "off"
   document.getElementById("longSort").value = "off"
   document.getElementById("latSort").value = "off"
-  document.getElementById("distSort").value = "off"    
+  document.getElementById("distSort").value = "off"
+  document.getElementById("about").value = "off"
     
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
