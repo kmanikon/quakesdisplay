@@ -4,6 +4,7 @@
     
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=loadMap"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="math.js" type="text/javascript"></script>
     <script src="parse.js" type="text/javascript"></script>
     
@@ -26,7 +27,7 @@
   <button class="tablinks" onclick="openCity(event, 'distSort')">Proximity</button>   
 </div>
 
-<div id="magSort" class="tabcontent" style="display:block">
+<div id="magSort" class="tabcontent" style="display:none">
   <h3>Sort By Magnituide</h3>
   <p>Magnituide displayed in the Richter Scale.</p>
   <p>Checking "Descending" sorts quakes from greatest to least by magnitude</p>
@@ -54,7 +55,7 @@
   <p>Checking "Ascending" sorts quakes from least to greatest by latitude</p>
 </div>
 
-<div id="distSort" class="tabcontent" style="display:none">
+<div id="distSort" class="tabcontent" style="display:block">
   <h3>Sort By Proximity</h3>
   <p>Enter your location: </p>
   <p>Checking "Descending" sorts quakes from furthest to closest</p>
@@ -64,29 +65,10 @@
 </div>    
    
 <script type="text/javascript">
-document.getElementById('magSort').value = "on"
+document.getElementById('distSort').value = "on"
 </script>    
     
-    <!-- show filters 
-    <div>
-        <h3>show:</h3>
-        <input type="checkbox" id="Magnitude" name="filter" value="Magnitude" checked>
-        <label for="Magnituide">Magnitude</label>
-        <br>
-        <input type="checkbox" id="Place" name="filter" value="Place" checked>
-        <label for="Place">Place</label>
-        <br>
-        <input type="checkbox" id="Time" name="filter" value="Time" checked>
-        <label for="Place">Time</label>
-        <br>
-        <input type="checkbox" id="Longitude/Latitude" name="filter" value="Longitude/Latitude" checked>
-        <label for="Place">Longitude/Latitude</label>
-
-        <br>
-    </div>
-
-   <h3>Show:</h3>
--->
+    
     <br>
     <br>
     <label class="container">Magnitude
@@ -109,52 +91,43 @@ document.getElementById('magSort').value = "on"
         <span class="checkmark"></span>
     </label>
     
-    
-    <!-- sort options
-    <div>
-        <h3>sort by:</h3>
-        <input id="magSort" type="radio" name="sort" checked>
-        <label for="magSort">Magnitude</label> <br>
-        <input id="timeSort" type="radio" name="sort">
-        <label for="timeSort">Time</label> <br>
-        <input id="longSort" type="radio" name="sort">
-        <label for="longSort">Longitude</label> <br>
-        <input id="latSort" type="radio" name="sort">
-        <label for="latSort">Latitude</label> <br>
-        <input id="distSort" type="radio" name="sort">
-        <label for="distSort">Distance from:</label>
-        <input type="text" id="city" name="city">
-    </div>
--->
     <br>
 
-    <!-- sort order 
     
-    <div>
-        <input id="descending" type="radio" name="order" checked>
-        <label for="descending">Descending</label> <br>
-        <input id="ascending" type="radio" name="order">
-        <label for="ascending">Ascending</label> <br>
-    </div>
-    
--->
     <label class="container">Ascending
-        <input type="radio" id="ascending" name="order">
+        <input type="radio" id="ascending" name="order" checked="checked">
         <span class="checkmark"></span>
     </label>
     
     <label class="container">Descending
-        <input type="radio" id="descending" name="order" checked="checked">
+        <input type="radio" id="descending" name="order">
         <span class="checkmark"></span>
-    </label>    
+    </label>   
+    
+    <br>
+    
+    <label class="container">Map
+        <input type="radio" id="mapview" name="format" checked="checked">
+        <span class="checkmark"></span>
+        
+    </label>
+    
+    <label class="container">Table
+        <input type="radio" id="tableview" name="format">
+        <span class="checkmark"></span>
+    </label>
     
     <!-- n quakes to sort (most recent) -->
     <div>
         <h3>Number of Quakes:</h3>
         <!-- <label for="number">Number of Quakes to Display</label> -->
-        <input type="number" id="number" name="number" value=25>
+        <input type="number" id="numbero" name="number" placeholder="5">
     </div>
     <br>
+    
+    
+    
+    
     
     <div>
         <button onclick = "display()">Update</button>
@@ -176,5 +149,17 @@ document.getElementById('magSort').value = "on"
         
       </tbody>
     </table>
+    
+    <div id="map"></div>
+    
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+    
+      defer
+            
+    ></script>
+
+    
+    
 </body>        
 </html>
