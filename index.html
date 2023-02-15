@@ -19,7 +19,7 @@
     
 
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'magSort')">Magnitude</button>
+  <button id="defbutton" class="tablinks" onclick="openCity(event, 'magSort')">Magnitude</button>
   <button class="tablinks" onclick="openCity(event, 'timeSort')">Time</button>
   <button class="tablinks" onclick="openCity(event, 'longSort')">Longitude</button>
   <button class="tablinks" onclick="openCity(event, 'latSort')">Latitude</button>
@@ -27,7 +27,7 @@
   <button class="tablinks" onclick="openCity(event, 'about')">About</button>
 </div>
 
-<div id="magSort" class="tabcontent" style="display:none">
+<div id="magSort" class="tabcontent" style="display:block">
   <h3>Sort By Magnituide</h3>
   <p>Magnituide displayed in the Richter Scale.</p>
   <p>Checking "Descending" sorts quakes from greatest to least by magnitude</p>
@@ -64,7 +64,7 @@
   <input type="text" id="city" value="San Jose"> 
 </div>  
     
-<div id="about" class="tabcontent" style="display:block">
+<div id="about" class="tabcontent" style="display:none">
   <p>This webpage is an online tool for displaying earthquake data collected by the US Geological survey.</p>
   <p>Select a tab to sort by the associated attribute and use the checkboxes to filter your search.</p>
   <p>Quakes can either be shown on a Google Map or presented in table format.</p>
@@ -75,48 +75,66 @@
 document.getElementById('about').value = "on"
 </script> 
 
+
+<script type="text/javascript">
+document.getElementById("defbutton").click();
+</script>
+
     
 
     
     <br>
     <br>
-    <h3>Table Attributes:</h3>
-    <label class="container">Magnitude
-        <input type="checkbox" id="Magnitude" checked="checked">
-        <span class="checkmark"></span>
-    </label>
 
-    <label class="container">Place
-        <input type="checkbox" id="Place" checked="checked">
-        <span class="checkmark"></span>
-    </label>
+    <div style="display:flex; flex-direction: col; justify-content: left; ">
+        
+      <div style="flex-direction: row; ">
+      <h3>Table Attributes:</h3>
+        <label class="container">Magnitude
+            <input type="checkbox" id="Magnitude" checked="checked">
+            <span class="checkmark"></span>
+        </label>
 
-    <label class="container">Time
-        <input type="checkbox" id="Time" checked="checked">
-        <span class="checkmark"></span>
-    </label>
+        <label class="container">Place
+            <input type="checkbox" id="Place" checked="checked">
+            <span class="checkmark"></span>
+        </label>
 
-    <label class="container">Coordinates
-        <input type="checkbox" id="Longitude/Latitude" checked="checked">
-        <span class="checkmark"></span>
-    </label>
+        <label class="container">Time
+            <input type="checkbox" id="Time" checked="checked">
+            <span class="checkmark"></span>
+        </label>
 
-    
-    <br>
+        <label class="container">Coordinates
+            <input type="checkbox" id="Longitude/Latitude" checked="checked">
+            <span class="checkmark"></span>
+        </label>
+      </div>
 
-    <h3>Sort By:</h3>
-    <label class="container">Ascending
-        <input type="radio" id="ascending" name="order" checked="checked">
-        <span class="checkmark"></span>
-    </label>
-    
-    <label class="container">Descending
-        <input type="radio" id="descending" name="order">
-        <span class="checkmark"></span>
-    </label>   
-    
-    <br>
-    
+
+
+      <div style="flex-direction: row; margin-left: 200px;">
+
+
+      <h3>Sort By:</h3>
+      <label class="container">Ascending
+          <input type="radio" id="ascending" name="order" checked="checked">
+          <span class="checkmark"></span>
+      </label>
+      
+      <label class="container">Descending
+          <input type="radio" id="descending" name="order">
+          <span class="checkmark"></span>
+      </label>   
+      
+
+
+    </div>
+
+
+
+    <div style="flex-direction: row; margin-left: 200px;">
+
     <h3>Display Format:</h3>
     <label class="container">Map
         <input type="radio" id="mapview" name="format" checked="checked">
@@ -128,12 +146,21 @@ document.getElementById('about').value = "on"
         <input type="radio" id="tableview" name="format">
         <span class="checkmark"></span>
     </label>
+
+  </div>
+
+      
+  </div>
+
+
+    
+   
     
     <!-- n quakes to sort (most recent) -->
     <div>
         <h3>Number of Quakes:</h3>
         <!-- <label for="number">Number of Quakes to Display</label> -->
-        <input type="number" id="numbero" name="number" placeholder="5">
+        <input type="number" id="numbero" name="number" value="5">
     </div>
     <br>
     
