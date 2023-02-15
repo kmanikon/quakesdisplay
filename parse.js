@@ -1,5 +1,5 @@
-var mylong
-var mylat
+var mylong = 0
+var mylat = 0
 
 
 /*
@@ -11,17 +11,26 @@ function display(){
     
     var staticURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
     
+
     // geocode
     var mapsURLBase = "https://maps.googleapis.com/maps/api/geocode/json?address="
-    var mapsAPIKey = "&key=AIzaSyCC9UKV-RIkf01i_oZdYRrIOto_t7Z3irk"
-    
+    //var mapsAPIKey = "&key=AIzaSyCC9UKV-RIkf01i_oZdYRrIOto_t7Z3irk"
+    var mapsAPIKey = "&key=AIzaSyBsC1WKjKATvdB_5YinmZFnGAJd5x7LiPg"
     var quakeInfo = document.getElementById("data")     
     
+    /*
     var magChecked = document.getElementById("Magnitude").checked
     var placeChecked = document.getElementById("Place").checked
     var timeChecked = document.getElementById("Time").checked
     var coorChecked = document.getElementById("Longitude/Latitude").checked
-        
+    */
+
+    var magChecked = true
+    var placeChecked = true
+    var timeChecked = true
+    var coorChecked = true
+
+
     var magSort = (document.getElementById("magSort").value == "on")
     var timeSort = (document.getElementById("timeSort").value == "on")
     var longSort = (document.getElementById("longSort").value == "on")
@@ -36,7 +45,8 @@ function display(){
         
     var mapChecked = document.getElementById("mapview").checked
     var tblChecked = document.getElementById("tableview").checked
-        
+
+
     // # quakes user requests
     var n = parseInt( $( '#numbero' ).val() )
     
@@ -218,6 +228,7 @@ function display(){
             document.getElementById("map").style.visibility = "hidden";
             head += `<tr>`
         
+            
             if (magChecked == true){
                 head += `<th>Magnitude</th>`
             }
@@ -233,10 +244,12 @@ function display(){
             if (coorChecked == true){
                 head += `<th>Coordinates</th>`
             }
+            
          
             if (distSort){
                 head += `<th>Distance (km)</th>`  
             }
+            
         
             head += `</tr>`
         
