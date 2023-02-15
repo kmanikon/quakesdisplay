@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Quake Display</title>
+    <title>Earthquake Lookup</title>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -13,7 +13,7 @@
     
 <body>
     <div>
-        <h1>Quake Display</h1>
+        <h1>Earthquake Lookup</h1>
     </div>
     
     
@@ -80,6 +80,7 @@ document.getElementById('about').value = "on"
     
     <br>
     <br>
+    <h3>Table Attributes:</h3>
     <label class="container">Magnitude
         <input type="checkbox" id="Magnitude" checked="checked">
         <span class="checkmark"></span>
@@ -103,7 +104,7 @@ document.getElementById('about').value = "on"
     
     <br>
 
-    
+    <h3>Sort By:</h3>
     <label class="container">Ascending
         <input type="radio" id="ascending" name="order" checked="checked">
         <span class="checkmark"></span>
@@ -116,6 +117,7 @@ document.getElementById('about').value = "on"
     
     <br>
     
+    <h3>Display Format:</h3>
     <label class="container">Map
         <input type="radio" id="mapview" name="format" checked="checked">
         <span class="checkmark"></span>
