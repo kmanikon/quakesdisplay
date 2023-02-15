@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Earthquake Lookup</title>
+    <title>Quake Display</title>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -13,7 +13,7 @@
     
 <body>
     <div>
-        <h1>Earthquake Lookup</h1>
+        <h1>Quake Display</h1>
     </div>
     
     
@@ -77,62 +77,53 @@ document.getElementById('about').value = "on"
 
     
     
-<h3>Table Attributes:</h3>
-<label class="container">Magnitude
-    <input type="checkbox" id="Magnitude" checked="checked">
-    <span class="checkmark"></span>
-</label>
+    <br>
+    <br>
+    <label class="container">Magnitude
+        <input type="checkbox" id="Magnitude" checked="checked">
+        <span class="checkmark"></span>
+    </label>
 
-<label class="container">Place
-    <input type="checkbox" id="Place" checked="checked">
-    <span class="checkmark"></span>
-</label>
+    <label class="container">Place
+        <input type="checkbox" id="Place" checked="checked">
+        <span class="checkmark"></span>
+    </label>
 
-<label class="container">Time
-    <input type="checkbox" id="Time" checked="checked">
-    <span class="checkmark"></span>
-</label>
+    <label class="container">Time
+        <input type="checkbox" id="Time" checked="checked">
+        <span class="checkmark"></span>
+    </label>
 
-<label class="container">Coordinates
-    <input type="checkbox" id="Longitude/Latitude" checked="checked">
-    <span class="checkmark"></span>
-</label>
+    <label class="container">Coordinates
+        <input type="checkbox" id="Longitude/Latitude" checked="checked">
+        <span class="checkmark"></span>
+    </label>
     
-<br>
-    
-    
-<h3>Sort By:</h3>
-<label class="container">Ascending
-    <input type="radio" id="ascending" name="order" checked="checked">
-    <span class="checkmark"></span>
-</label>
-
-<label class="container">Descending
-    <input type="radio" id="descending" name="order">
-    <span class="checkmark"></span>
-</label>  
-    
-    
-<br>
-<h3>Display Format:</h3>
-<label class="container">Map
-    <input type="radio" id="mapview" name="format" checked="checked">
-    <span class="checkmark"></span>
-      
-</label>
-  
-<label class="container">Table
-    <input type="radio" id="tableview" name="format">
-    <span class="checkmark"></span>
-</label>
-
-
-
-
+    <br>
 
     
+    <label class="container">Ascending
+        <input type="radio" id="ascending" name="order" checked="checked">
+        <span class="checkmark"></span>
+    </label>
     
-   
+    <label class="container">Descending
+        <input type="radio" id="descending" name="order">
+        <span class="checkmark"></span>
+    </label>   
+    
+    <br>
+    
+    <label class="container">Map
+        <input type="radio" id="mapview" name="format" checked="checked">
+        <span class="checkmark"></span>
+        
+    </label>
+    
+    <label class="container">Table
+        <input type="radio" id="tableview" name="format">
+        <span class="checkmark"></span>
+    </label>
     
     <!-- n quakes to sort (most recent) -->
     <div>
@@ -157,7 +148,7 @@ document.getElementById('about').value = "on"
     
     <div src = data></div>
     
-    <table id="quakeTable" border="2">
+    <table id="quakeTable" border="1">
       <thead>
           
       </thead>
