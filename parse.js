@@ -1,5 +1,5 @@
-var mylong
-var mylat
+var mylong = 0
+var mylat = 0
 
 
 /*
