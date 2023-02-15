@@ -13,7 +13,7 @@ function display(){
     
     // geocode
     var mapsURLBase = "https://maps.googleapis.com/maps/api/geocode/json?address="
-    var mapsAPIKey = "&key=AIzaSyCC9UKV-RIkf01i_oZdYRrIOto_t7Z3irk"
+    var mapsAPIKey = "&key=AIzaSyBsC1WKjKATvdB_5YinmZFnGAJd5x7LiPg"
     
     var quakeInfo = document.getElementById("data")     
     
