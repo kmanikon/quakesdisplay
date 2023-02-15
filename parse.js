@@ -1,5 +1,5 @@
-var mylong = 0
-var mylat = 0
+var mylong
+var mylat
 
 
 /*
@@ -8,27 +8,34 @@ var mylat = 0
 */
 
 function display(){    
+
+    //document.getElementById("magSort").value = "off"
     
     var staticURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
     
 
     // geocode
     var mapsURLBase = "https://maps.googleapis.com/maps/api/geocode/json?address="
-    //var mapsAPIKey = "&key=AIzaSyCC9UKV-RIkf01i_oZdYRrIOto_t7Z3irk"
-    var mapsAPIKey = "&key=AIzaSyBsC1WKjKATvdB_5YinmZFnGAJd5x7LiPg"
+    var mapsAPIKey = "&key=AIzaSyCC9UKV-RIkf01i_oZdYRrIOto_t7Z3irk"
+
+    // old key:
+    //var mapsAPIKey = "&key=AIzaSyBsC1WKjKATvdB_5YinmZFnGAJd5x7LiPg"
+
     var quakeInfo = document.getElementById("data")     
     
-    /*
+    
     var magChecked = document.getElementById("Magnitude").checked
     var placeChecked = document.getElementById("Place").checked
     var timeChecked = document.getElementById("Time").checked
     var coorChecked = document.getElementById("Longitude/Latitude").checked
-    */
+    
 
+    /*
     var magChecked = true
     var placeChecked = true
     var timeChecked = true
     var coorChecked = true
+    */
 
 
     var magSort = (document.getElementById("magSort").value == "on")
@@ -49,6 +56,7 @@ function display(){
 
     // # quakes user requests
     var n = parseInt( $( '#numbero' ).val() )
+    console.log(n)
     
     
     city.replace(" ", "+")
@@ -338,3 +346,4 @@ function pad(str, len){
     }
     return str
 }
+
