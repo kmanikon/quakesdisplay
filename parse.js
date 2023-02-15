@@ -1,5 +1,5 @@
-var mylong = 0
-var mylat = 0
+var mylong
+var mylat
 
 
 /*
@@ -17,12 +17,12 @@ function display(){
     
     var quakeInfo = document.getElementById("data")     
     
-    /*
+    
     var magChecked = document.getElementById("Magnitude").checked
     var placeChecked = document.getElementById("Place").checked
     var timeChecked = document.getElementById("Time").checked
     var coorChecked = document.getElementById("Longitude/Latitude").checked
-    */
+    
 
     var magChecked = true
     var placeChecked = true
